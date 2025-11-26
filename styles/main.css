@@ -1,0 +1,356 @@
+:root {
+  --primary-color: rgba(238, 157, 51, 0.63);
+  --secondary-color: #3e3e3e;
+  --primary-hover: rgb(117, 97, 29);
+  --card-color: #096911;
+}
+
+::-webkit-scrollbar {
+  display: hidden;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary-color);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* For Firefox */
+scrollbar {
+  width: 12px;
+}
+
+scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+scrollbar-thumb {
+  background: var(--secondary-color);
+  border-radius: 10px;
+}
+
+scrollbar-thumb:hover {
+  background: #555;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  overflow: hidden;
+}
+
+.container {
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(
+    125% 125% at 50% 10%,
+    var(--primary-color) 10%,
+    #000 100%
+  );
+  overflow: hidden;
+}
+
+.head {
+  position: absolute;
+  background-color: var(--secondary-color);
+  padding: 20px;
+  border-radius: 10px;
+  width: 40%;
+  left: 30%;
+  top: 10%;
+  color: white;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.head .bg-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-image: linear-gradient(
+      to right,
+      rgba(79, 79, 79, 0.18) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(128, 128, 128, 0.04) 1px, transparent 1px);
+  background-size: 14px 24px;
+}
+
+.head .content {
+  position: relative;
+  z-index: 10;
+}
+
+.head .content h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  font-family: cursive;
+  text-decoration: underline;
+}
+
+.head .content p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.tools {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.head .content button {
+  padding: 8px 16px;
+  font-size: 1.2em;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+
+.head .content button:hover {
+  background-color: var(--primary-hover);
+}
+
+.head .content .tools i {
+  font-size: 1.2em;
+  color: white;
+  cursor: pointer;
+}
+
+.head .content i:hover {
+  color: var(--primary-hover);
+}
+
+.head .content .pointer {
+  position: absolute;
+  left: 47%;
+  bottom: -50%;
+  width: 0;
+  height: 0;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 50px solid var(--secondary-color);
+  transform: rotate(180deg);
+}
+
+.won {
+  position: absolute;
+  max-width: 10%;
+  background-color: var(--secondary-color);
+  max-height: 90%;
+  top: 5%;
+  right: 0%;
+  border-radius: 20px 0 0 20px;
+  padding: 10px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: underline;
+  text-align: center;
+  display: none;
+  overflow-y: scroll;
+}
+
+.won #content {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.won img {
+  max-width: 90%;
+  max-height: 50%;
+}
+
+.wheel {
+  position: absolute;
+  top: 40%;
+  left: 13%;
+  width: 1500px;
+  height: 1500px;
+  margin: auto;
+  border-radius: 50%;
+  border: 10px solid #333;
+  background: conic-gradient(
+    rgba(140, 45, 218, 0.658) 0deg 45deg,
+    rgba(226, 60, 248, 0.8) 45deg 90deg,
+    rgba(179, 51, 161, 0.8) 90deg 135deg,
+    rgba(234, 101, 247, 0.8) 135deg 180deg,
+    rgba(90, 40, 119, 0.8) 180deg 225deg,
+    rgba(77, 40, 102, 0.8) 225deg 270deg,
+    rgba(184, 109, 202, 0.8) 270deg 315deg,
+    rgba(247, 1, 255, 0.8) 315deg 360deg
+  );
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5), 0 10px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 4s ease-in-out;
+  transform: rotate(0deg);
+}
+
+.wheel .segment {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0% 0%;
+  text-align: center;
+  color: #fff;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.wheel .segment img {
+  max-width: 25%;
+  max-height: 25%;
+}
+
+.wheel .segment:nth-child(1) {
+  transform: rotate(0deg) translate(-50%, -50%);
+}
+.wheel .segment:nth-child(2) {
+  transform: rotate(45deg) translate(-50%, -50%);
+}
+.wheel .segment:nth-child(3) {
+  transform: rotate(90deg) translate(-50%, -50%);
+}
+.wheel .segment:nth-child(4) {
+  transform: rotate(135deg) translate(-50%, -50%);
+}
+.wheel .segment:nth-child(5) {
+  transform: rotate(180deg) translate(-50%, -50%);
+}
+.wheel .segment:nth-child(6) {
+  transform: rotate(225deg) translate(-50%, -50%);
+}
+.wheel .segment:nth-child(7) {
+  transform: rotate(270deg) translate(-50%, -50%);
+}
+.wheel .segment:nth-child(8) {
+  transform: rotate(315deg) translate(-50%, -50%);
+}
+
+
+@media (max-width: 1100px) {
+  .wheel {
+    width: 900px;
+    height: 900px;
+    left: 0%;
+  }
+}
+
+@media (max-width: 800px) {
+  .wheel {
+    width: 700px;
+    height: 700px;
+    left: 5%;
+  }
+}
+
+@media (max-width: 640px) {
+  .wheel {
+    width: 500px;
+    height: 500px;
+    left: 10%;
+  }
+}
+
+@media (max-width: 470px) {
+  .wheel {
+    width: 500px;
+    height: 500px;
+    left: -10%;
+  }
+}
+
+@media (max-width: 640px) {
+  .head {
+    width: 80%;
+    left: 10%;
+    padding: 30px;
+  }
+
+  .head .content h1 {
+    font-size: 2.5em;
+  }
+
+  .head .content p {
+    font-size: 1.5em;
+  }
+
+  .head .content button {
+    padding: 10px 20px;
+    font-size: 1.5em;
+  }
+
+  .tools {
+    gap: 20px;
+  }
+
+  .head .content .tools i {
+    font-size: 1.5em;
+  }
+
+  .won {
+    max-width: 100%;
+    background-color: var(--secondary-color);
+    max-height: 30%;
+    top: 0;
+    border-radius: 0 0 0 20px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    z-index: 10;
+  }
+
+  .won #content {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .won img {
+    max-width: 100px;
+  }
+}
+
+@media (max-width: 470px) {
+  .head .content h1 {
+    font-size: 1.5em;
+  }
+  .head .content p {
+    font-size: 18px;
+  }
+  .head .content .pointer {
+    left: 40%;
+  }
+}
